@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arvi Jay</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="w-full h-dvh h-dvh flex items-center justify-center">
+        <div class="bg-black/60 backdrop-blur-sm w-8/10 h-8/10 border-5 border-white/20 rounded-[80px] flex flex-row">
+            <div class="h-full w-45/100 flex items-center justify-center">
+                <img src="./assets/Tungpalan, Arvi Jay B.jpg" alt="Arvi Jay"
+                    class="h-5/10 w-auto rounded-full shadow-lg">
+            </div>
+            <div class="grid grid-rows-3 items-center justify-center text-white text-shadow-xl">
+                <div>
+                    <div class="text-4xl w-full font-bold">Arvi Jay B. Tungpalan</div>
+                    <div class="text-2xl w-full">11-Tech Pro C</div>
+                </div>
+                <div class="flex flex-col gap-5 w-full items-center justify-center text-2xl">
+                    <div class="flex flex-row gap-2 items-center w-full justify-left">
+                        <span class="bg-white/10 w-12 h-12 rounded-full flex items-center justify-center shadow-lg">
+                            <i class="fa-solid fa-gift"></i>
+                        </span>
+                        <strong>Birthday:</strong>
+                        December 20, 2009
+                    </div>
+                    <div class="flex flex-row gap-2 items-center w-full justify-left">
+                        <span class="bg-white/10 w-12 h-12 rounded-full flex items-center justify-center shadow-lg">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </span>
+                        <strong>Address:</strong>
+                        Block 07, Campo Tinio
+                    </div>
+                    <div class="flex flex-row gap-2 items-center w-full justify-left">
+                        <span class="bg-white/10 w-12 h-12 rounded-full flex items-center justify-center shadow-lg">
+                            <i class="fa-solid fa-phone"></i>
+                        </span>
+                        <strong>Phone:</strong>
+                        09452673927
+                    </div>
+                </div>
+                <a href="./skill.html"
+                    class="text-2xl w-fit bg-black backdrop-blur-sm py-4 px-12 rounded-full hover:bg-white hover:text-black hover:scale-120">Skills
+                    <i class="fa-solid fa-screwdriver-wrench"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div
+        class="loading fixed top-0 left-0 right-0 bottom-0 bg-black z-99999 flex flex-col gap-5 items-center justify-center ">
+        <i class="fa-solid fa-circle-notch text-6xl text-white animate"></i>
+        <span class="text-3xl text-white font-bold">Loading</span>
+    </div>
+    <script>
+        const loadingScreen = document.querySelector(".loading")
+
+        window.addEventListener("load", () => {
+            setTimeout(() => {
+                loadingScreen.classList.add("opacity-0", "pointer-events-none")
+
+                loadingScreen.addEventListener("transitionend", () => {
+                    loadingScreen.classList.add("hidden")
+                }, { once: true })
+            }, 500)
+        })
+    </script>
+</body>
+
+</html>

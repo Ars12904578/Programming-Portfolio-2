@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +8,20 @@
     <link rel="stylesheet" href="../style.css">
     <link rel="shortcut icon" href="../assets/favicon.png" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body class="bg-gray-900"> <div class="w-full h-dvh flex items-center justify-center text-white drop-shadow-lg">
-        <div class="bg-black/60 backdrop-blur-sm w-[90%] h-[90%] border-4 border-white/20 rounded-[70px] flex flex-col overflow-hidden">
-            
-            <div class="h-fit py-5 px-6 w-[calc(100%-1rem)] mx-auto my-2 flex flex-row items-center justify-between bg-black rounded-full">
+<body class="bg-gray-900">
+    <div class="w-full h-dvh flex items-center justify-center text-white drop-shadow-lg">
+        <div
+            class="bg-black/60 backdrop-blur-sm w-[90%] h-[90%] border-4 border-white/20 rounded-[70px] flex flex-col overflow-hidden">
+
+            <div
+                class="h-fit py-5 px-6 w-[calc(100%-1rem)] mx-auto my-2 flex flex-row items-center justify-between bg-black rounded-full">
                 <div class="flex flex-row items-center gap-5">
-                    <img src="../assets/Tungpalan, Arvi Jay B.jpg" alt="Arvi Jay" class="h-20 w-20 object-cover rounded-full shadow-lg">
+                    <img src="../assets/Tungpalan, Arvi Jay B.jpg" alt="Arvi Jay"
+                        class="h-20 w-20 object-cover rounded-full shadow-lg">
                     <div class="flex flex-col justify-center">
                         <div class="text-3xl font-bold">Arvi Jay B. Tungpalan</div>
                         <div class="text-xl opacity-80">11-Tech Pro C</div>
@@ -26,12 +32,81 @@
 
             <div class="flex-1 flex flex-col items-center justify-between p-5 overflow-y-auto">
                 <div class="grid grid-cols-3 text-3xl items-center justify-center text-center p-4 text-white w-full">
-                    <span>Normal text</span>
-                    <b>Bold Text</b>
-                    <strong>Strong Text</strong>
-                    </div>
 
-                <a href="./index.html" class="hover:bg-white w-fit my-5 hover:text-black bg-black text-white transition-all duration-300 hover:scale-110 py-2 px-4 rounded-full flex items-center gap-2">
+                    <!-- Headings -->
+                    <h1>Heading 1</h1>
+                    <h2>Heading 2</h2>
+                    <h3>Heading 3</h3>
+                    <h4>Heading 4</h4>
+                    <h5>Heading 5</h5>
+                    <h6>Heading 6</h6>
+
+                    <hr>
+
+                    <!-- Paragraph -->
+                    <p>Hello World! This is a paragraph.</p>
+
+                    <!-- Bold -->
+                    <p>This is <b>bold text</b>.</p>
+
+                    <!-- Strong -->
+                    <p><strong>Warning!</strong> Save your work before closing.</p>
+
+                    <!-- Italic -->
+                    <p>This is <i>italic text</i>.</p>
+
+                    <!-- Emphasis -->
+                    <p>Please <em>pay attention</em> to this message.</p>
+
+                    <!-- Underline -->
+                    <p>This is <u>underlined text</u>.</p>
+
+                    <!-- Highlight -->
+                    <p>This is <mark>highlighted text</mark>.</p>
+
+                    <!-- Small -->
+                    <p>This is normal text. <small>This is small text.</small></p>
+
+                    <!-- Deleted -->
+                    <p>Price: <del>₱500</del> ₱350</p>
+
+                    <!-- Inserted -->
+                    <p>Updated version: <ins>Version 2.0</ins></p>
+
+                    <!-- Subscript -->
+                    <p>Water = H<sub>2</sub>O</p>
+
+                    <!-- Superscript -->
+                    <p>x<sup>2</sup> + y<sup>2</sup></p>
+
+                    <!-- Span -->
+                    <p>
+                        Favorite color:
+                        <span style="color: blue;">Blue</span>
+                    </p>
+
+                    <!-- Code -->
+                    <p>Use <code>console.log("Hello World");</code> to print text.</p>
+
+                    <!-- Preformatted -->
+                    <pre>
+                        Name : Arvi
+                        Age  : 16
+                        Role : Student
+                    </pre>
+
+                    <!-- Blockquote -->
+                    <blockquote>
+                        "The best way to predict the future is to create it."
+                    </blockquote>
+
+                    <!-- Short Quote -->
+                    <p>My teacher said, <q>Practice every day.</q></p>
+
+                </div>
+
+                <a href="./index.html"
+                    class="hover:bg-white w-fit my-5 hover:text-black bg-black text-white transition-all duration-300 hover:scale-110 py-2 px-4 rounded-full flex items-center gap-2">
                     <i class="fa-solid fa-caret-left"></i> Go Back
                 </a>
             </div>
@@ -39,7 +114,8 @@
         </div>
     </div>
 
-    <div class="loading fixed top-0 left-0 right-0 bottom-0 bg-black z-50 flex flex-col gap-5 items-center justify-center transition-opacity duration-500">
+    <div
+        class="loading fixed top-0 left-0 right-0 bottom-0 bg-black z-50 flex flex-col gap-5 items-center justify-center transition-opacity duration-500">
         <i class="fa-solid fa-circle-notch text-6xl text-white animate-spin"></i>
         <span class="text-3xl text-white font-bold">Loading</span>
     </div>
@@ -58,4 +134,5 @@
         })
     </script>
 </body>
+
 </html>

@@ -23,11 +23,11 @@ All programming activities, laboratory exercises, and projects assigned during t
 - **Frontend:** HTML5, CSS3, JavaScript
 - **Development:** Visual Studio Code
 - **Version Control:** Git & GitHub
-- **Hosting:** Netlify
+- **Hosting:** Netlify & My PC
 - **DNS, CDN & SSL:** Cloudflare
 
 ---
 
 <p align="center">
-Made with ❤️ by <b>Arvi Jay Tungpalan</b>
+By <b>Arvi Jay Tungpalan</b>
 </p>

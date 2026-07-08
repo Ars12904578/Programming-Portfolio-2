@@ -2,8 +2,6 @@
 
 # 💻 Programming Portfolio
 
-**Arvi Jay Tungpalan**
-
 Submitted to **Sir Arvie Jay Lapig**
 
 [🌐 View My Projects](https://www.arvi.click/projects/)

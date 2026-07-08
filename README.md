@@ -22,19 +22,11 @@ All programming activities, laboratory exercises, and projects assigned during t
 
 ## 🛠 Technologies Used
 
-| Frontend | Others |
-|----------|--------|
-| HTML5 | Git |
-| CSS3 | VS Code |
-| JavaScript | GitHub |
-
----
-
-## 📸 Preview
-
-<p align="center">
-<img src="https://www.arvi.click/assets/images/portfolio-preview.png" width="700">
-</p>
+- **Frontend:** HTML5, CSS3, JavaScript
+- **Development:** Visual Studio Code
+- **Version Control:** Git & GitHub
+- **Hosting:** Netlify
+- **DNS, CDN & SSL:** Cloudflare
 
 ---
 

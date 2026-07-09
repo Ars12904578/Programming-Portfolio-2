@@ -15,15 +15,16 @@
 
 <body>
     <div class="w-full h-dvh h-dvh flex items-center justify-center">
-        <div class="bg-black/60 backdrop-blur-sm w-[90%] h-[90%] border-5 border-white/20 rounded-[80px] flex flex-row">
+        <div class="bg-black/60 backdrop-blur-sm w-[80%] h-[80%] border-5 border-white/20 rounded-[80px] flex flex-row">
             <div class="h-full w-45/100 flex items-center justify-center">
                 <img src="./assets/Tungpalan, Arvi Jay B.jpg" alt="Arvi Jay"
-                    class="h-5/10 w-auto rounded-full shadow-lg">
+                    class="photo-thumb h-6/10 w-auto rounded-full shadow-lg transition-transform hover:scale-110">
             </div>
-            <div class="grid grid-rows-3 items-center justify-center text-white text-shadow-xl">
-                <div>
+            <div class="flex flex-col items-center justify-center gap-7 text-white text-shadow-xl">
+                <div class="flex flex-col gap-3">
                     <div class="text-4xl w-full font-bold">Arvi Jay B. Tungpalan</div>
                     <div class="text-2xl w-full">11-Tech Pro C</div>
+                    <div class="text-xl w-full italic">"Building. Learning. Creating."</div>
                 </div>
                 <div class="flex flex-col gap-5 w-full items-center justify-center text-2xl">
                     <div class="flex flex-row gap-2 items-center w-full justify-left">
@@ -38,7 +39,7 @@
                             <i class="fa-solid fa-location-dot"></i>
                         </span>
                         <strong>Address:</strong>
-                        Block 07, Campo Tinio
+                        Cabanatuan City
                     </div>
                     <div class="flex flex-row gap-2 items-center w-full justify-left">
                         <span class="bg-white/10 w-12 h-12 rounded-full flex items-center justify-center shadow-lg">
@@ -49,10 +50,20 @@
                     </div>
                 </div>
                 <a href="./skill.html"
-                    class="text-2xl w-fit bg-black backdrop-blur-sm py-4 px-12 rounded-full hover:bg-white hover:text-black hover:scale-120">Skills
-                    <i class="fa-solid fa-screwdriver-wrench"></i></a>
+                    class="text-xl w-fit bg-black backdrop-blur-sm py-4 px-12 rounded-full hover:bg-white hover:text-black hover:scale-110">
+                    Explore <i class="fa-solid fa-compass"></i></a>
             </div>
         </div>
+    </div>
+
+    <div id="lightbox"
+        class="fixed inset-0 bg-black/90 backdrop-blur-sm z-[9999] hidden items-center justify-center opacity-0 transition-opacity duration-300">
+        <img id="lightbox-img" src="" alt="Fullscreen photo"
+            class="max-w-[92%] max-h-[92%] object-contain rounded-2xl shadow-2xl">
+        <button id="lightbox-close"
+            class="absolute top-6 right-6 text-3xl w-12 h-12 flex items-center justify-center hover:scale-120 bg-black/10 text-white hover:bg-white/40 rounded-full transition">
+            <i class="fa-solid fa-circle-minus"></i>
+        </button>
     </div>
 
     <div
@@ -71,6 +82,40 @@
                     loadingScreen.classList.add("hidden")
                 }, { once: true })
             }, 500)
+        })
+
+        const lightbox = document.getElementById("lightbox")
+        const lightboxImg = document.getElementById("lightbox-img")
+        const lightboxClose = document.getElementById("lightbox-close")
+        const thumbs = document.querySelectorAll(".photo-thumb")
+
+        function openLightbox(src) {
+            lightboxImg.src = src
+            lightbox.classList.remove("hidden")
+            lightbox.classList.add("flex")
+            requestAnimationFrame(() => {
+                lightbox.classList.remove("opacity-0")
+            })
+            document.body.style.overflow = "hidden"
+        }
+
+        function closeLightbox() {
+            lightbox.classList.add("opacity-0")
+            lightbox.addEventListener("transitionend", () => {
+                lightbox.classList.add("hidden")
+                lightbox.classList.remove("flex")
+                lightboxImg.src = ""
+            }, { once: true })
+            document.body.style.overflow = ""
+        }
+
+        thumbs.forEach(img => {
+            img.addEventListener("click", () => openLightbox(img.src))
+        })
+
+        lightboxClose.addEventListener("click", closeLightbox)
+        lightbox.addEventListener("click", (e) => {
+            if (e.target === lightbox) closeLightbox()
         })
     </script>
 </body>

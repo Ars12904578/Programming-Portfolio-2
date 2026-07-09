@@ -2,13 +2,15 @@
 *{
     font-family: 'Cascadia Mono', sans-serif;
     transition: 0.2s;
+    user-select: none;
+    touch-action: none;
 }
 
 body{
     min-height: 100vh;
     margin: 0px;
     padding: 0px;
-    background-image: url('./assets/Untitled.jpg');
+    background-image: url('./photos/picture\ \(3\).jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

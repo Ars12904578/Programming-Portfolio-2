@@ -33,17 +33,17 @@
             <div class="flex flex-col items-center justify-center overflow-y-auto">
                 <div class="grid grid-cols-3 gap-3 overflow-y-auto w-full flex-1 p-5 rounded-3xl">
                     <img src="./photos/picture (1).jpg" alt="picture"
-                        class="w-full aspect-square object-cover rounded-3xl">
+                        class="photo-thumb w-full aspect-square object-cover rounded-3xl cursor-pointer transition-transform hover:scale-101">
                     <img src="./photos/picture (2).jpg" alt="picture"
-                        class="w-full aspect-square object-cover rounded-3xl">
+                        class="photo-thumb w-full aspect-square object-cover rounded-3xl cursor-pointer transition-transform hover:scale-101">
                     <img src="./photos/picture (3).jpg" alt="picture"
-                        class="w-full aspect-square object-cover rounded-3xl">
+                        class="photo-thumb w-full aspect-square object-cover rounded-3xl cursor-pointer transition-transform hover:scale-101">
                     <img src="./photos/picture (4).jpg" alt="picture"
-                        class="w-full aspect-square object-cover rounded-3xl">
+                        class="photo-thumb w-full aspect-square object-cover rounded-3xl cursor-pointer transition-transform hover:scale-101">
                     <img src="./photos/picture (5).jpg" alt="picture"
-                        class="w-full aspect-square object-cover rounded-3xl">
+                        class="photo-thumb w-full aspect-square object-cover rounded-3xl cursor-pointer transition-transform hover:scale-101">
                     <img src="./photos/picture (6).jpg" alt="picture"
-                        class="w-full aspect-square object-cover rounded-3xl">
+                        class="photo-thumb w-full aspect-square object-cover rounded-3xl cursor-pointer transition-transform hover:scale-101">
                 </div>
                 <a href="./skill.html"
                     class="hover:bg-white my-5 hover:text-black bg-black text-white hover:scale-120 py-2 px-4 rounded-full ">
@@ -52,6 +52,16 @@
 
         </div>
     </div>
+    </div>
+
+    <div id="lightbox"
+        class="fixed inset-0 bg-black/90 backdrop-blur-sm z-[9999] hidden items-center justify-center opacity-0 transition-opacity duration-300">
+        <img id="lightbox-img" src="" alt="Fullscreen photo"
+            class="max-w-[92%] max-h-[92%] object-contain rounded-2xl shadow-2xl">
+        <button id="lightbox-close"
+            class="absolute top-6 right-6 text-white text-3xl w-12 h-12 flex items-center justify-center bg-black/60 hover:bg-white hover:text-black rounded-full transition">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
     </div>
 
     <div
@@ -70,6 +80,40 @@
                     loadingScreen.classList.add("hidden")
                 }, { once: true })
             }, 500)
+        })
+
+        const lightbox = document.getElementById("lightbox")
+        const lightboxImg = document.getElementById("lightbox-img")
+        const lightboxClose = document.getElementById("lightbox-close")
+        const thumbs = document.querySelectorAll(".photo-thumb")
+
+        function openLightbox(src) {
+            lightboxImg.src = src
+            lightbox.classList.remove("hidden")
+            lightbox.classList.add("flex")
+            requestAnimationFrame(() => {
+                lightbox.classList.remove("opacity-0")
+            })
+            document.body.style.overflow = "hidden"
+        }
+
+        function closeLightbox() {
+            lightbox.classList.add("opacity-0")
+            lightbox.addEventListener("transitionend", () => {
+                lightbox.classList.add("hidden")
+                lightbox.classList.remove("flex")
+                lightboxImg.src = ""
+            }, { once: true })
+            document.body.style.overflow = ""
+        }
+
+        thumbs.forEach(img => {
+            img.addEventListener("click", () => openLightbox(img.src))
+        })
+
+        lightboxClose.addEventListener("click", closeLightbox)
+        lightbox.addEventListener("click", (e) => {
+            if (e.target === lightbox) closeLightbox()
         })
     </script>
 </body>

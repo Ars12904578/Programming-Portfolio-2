@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arvi Jay</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/favicon-16x16.png" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="./components/load.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -17,18 +18,7 @@
     <div class="w-full h-dvh h-dvh flex items-center justify-center text-white text-shadow-lg">
         <div class="bg-black/60 backdrop-blur-sm w-[90%] h-[90%] border-5 border-white/20 rounded-[70px] flex flex-col">
 
-            <div
-                class="h-fit py-5 px-6 w-[calc(100%-1rem)] mx-auto my-2 flex flex-row items-center justify-between bg-black rounded-full">
-                <div class="flex flex-row items-center gap-5">
-                    <img src="./assets/Tungpalan, Arvi Jay B.jpg" alt="Arvi Jay"
-                        class="h-20 w-auto rounded-full shadow-lg">
-                    <div class="grid grid-rows-2">
-                        <div class="text-3xl w-full font-bold">Arvi Jay B. Tungpalan</div>
-                        <div class="text-xl w-full">11-Tech Pro C</div>
-                    </div>
-                </div>
-                <div class="text-5xl font-bold mr-5">Photos</div>
-            </div>
+            <div id="navbar"></div>
 
             <div class="flex flex-col items-center justify-center overflow-y-auto">
                 <div class="grid grid-cols-3 gap-3 overflow-y-auto w-full flex-1 p-5 rounded-3xl">
@@ -54,66 +44,21 @@
     </div>
     </div>
 
-    <div id="lightbox"
-        class="fixed inset-0 bg-black/90 backdrop-blur-sm z-[9999] hidden items-center justify-center opacity-0 transition-opacity duration-300">
-        <img id="lightbox-img" src="" alt="Fullscreen photo"
-            class="max-w-[92%] max-h-[92%] object-contain rounded-2xl shadow-2xl">
-        <button id="lightbox-close"
-            class="absolute top-6 right-6 text-3xl w-12 h-12 flex items-center justify-center hover:scale-120 bg-black/10 text-white hover:bg-white/40 rounded-full transition">
-            <i class="fa-solid fa-circle-minus"></i>
-        </button>
-    </div>
+    <div id="lightbox-container"></div>
 
     <div
         class="loading fixed top-0 left-0 right-0 bottom-0 bg-black z-99999 flex flex-col gap-5 items-center justify-center ">
-        <i class="fa-solid fa-circle-notch text-6xl text-white animate"></i>
-        <span class="text-3xl text-white font-bold">Loading</span>
+        <img src="./assets/android-chrome-192x192.png" alt="image" class="animate-picture">
     </div>
     <script>
-        const loadingScreen = document.querySelector(".loading")
-
-        window.addEventListener("load", () => {
-            setTimeout(() => {
-                loadingScreen.classList.add("opacity-0", "pointer-events-none")
-
-                loadingScreen.addEventListener("transitionend", () => {
-                    loadingScreen.classList.add("hidden")
-                }, { once: true })
-            }, 500)
+        initLoadingScreen()
+        loadComponent("navbar", "./components/navbar.html", {
+            title: "Photos",
+            imagePath: "./assets/Tungpalan, Arvi Jay B.jpg"
         })
 
-        const lightbox = document.getElementById("lightbox")
-        const lightboxImg = document.getElementById("lightbox-img")
-        const lightboxClose = document.getElementById("lightbox-close")
-        const thumbs = document.querySelectorAll(".photo-thumb")
-
-        function openLightbox(src) {
-            lightboxImg.src = src
-            lightbox.classList.remove("hidden")
-            lightbox.classList.add("flex")
-            requestAnimationFrame(() => {
-                lightbox.classList.remove("opacity-0")
-            })
-            document.body.style.overflow = "hidden"
-        }
-
-        function closeLightbox() {
-            lightbox.classList.add("opacity-0")
-            lightbox.addEventListener("transitionend", () => {
-                lightbox.classList.add("hidden")
-                lightbox.classList.remove("flex")
-                lightboxImg.src = ""
-            }, { once: true })
-            document.body.style.overflow = ""
-        }
-
-        thumbs.forEach(img => {
-            img.addEventListener("click", () => openLightbox(img.src))
-        })
-
-        lightboxClose.addEventListener("click", closeLightbox)
-        lightbox.addEventListener("click", (e) => {
-            if (e.target === lightbox) closeLightbox()
+        loadComponent("lightbox-container", "./components/lightbox.html").then(() => {
+            initLightbox()
         })
     </script>
 </body>

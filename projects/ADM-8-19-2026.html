@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arvi Jay</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="shortcut icon" href="../assets/favicon-16x16.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="../components/load.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <style>
+        :root {
+            --ink: #0b0b0c;
+            --panel: rgba(20, 20, 22, 0.55);
+            --panel-hover: rgba(255, 255, 255, 0.05);
+            --line: rgba(255, 255, 255, 0.14);
+            --line-hover: rgba(255, 255, 255, 0.28);
+            --text: #f2f1ee;
+            --muted: rgba(242, 241, 238, 0.66);
+            --amber: #e8ab68;
+            --mint: #74e3c8;
+            --violet: #b3a2ee;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .wrap {
+            width: 100%;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 32px 24px 48px;
+        }
+
+        header {
+            margin-bottom: 56px;
+        }
+
+        .eyebrow {
+            font-family: 'Cascadia Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            color: var(--amber);
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--amber);
+            box-shadow: 0 0 0 4px rgba(232, 171, 104, 0.18);
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(34px, 5vw, 52px);
+            font-weight: 700;
+            margin: 0 0 12px;
+            letter-spacing: -0.01em;
+            color: var(--text);
+        }
+
+        h1 span {
+            color: var(--muted);
+            font-weight: 400;
+        }
+
+        header p {
+            color: var(--muted);
+            font-size: 16px;
+            max-width: 560px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section-head {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .section-head h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .section-head .count {
+            font-family: 'Cascadia Mono', monospace;
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .cat-classes .section-head h2 {
+            color: var(--amber);
+        }
+
+        .cat-structural .section-head h2 {
+            color: var(--mint);
+        }
+
+        .cat-elements .section-head h2 {
+            color: var(--violet);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            position: relative;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 24px 24px 26px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            color: var(--text);
+            transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: var(--line-hover);
+            background: var(--panel-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .badge {
+            font-family: 'Cascadia Mono', monospace;
+            font-size: 12.5px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid currentColor;
+            white-space: nowrap;
+        }
+
+        .cat-classes .badge {
+            color: var(--amber);
+            background: rgba(232, 171, 104, 0.1);
+        }
+
+        .cat-structural .badge {
+            color: var(--mint);
+            background: rgba(116, 227, 200, 0.1);
+        }
+
+        .cat-elements .badge {
+            color: var(--violet);
+            background: rgba(179, 162, 238, 0.1);
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14.5px;
+            line-height: 1.55;
+        }
+
+        .demo {
+            margin-top: auto;
+            padding-top: 4px;
+        }
+
+        /* ---- demo-specific styling ---- */
+        input {
+            border: 1px solid var(--line);
+            outline: none;
+            font-size: 16px;
+            border-radius: 10px;
+            padding: 11px 16px;
+            background-color: var(--ink);
+            color: var(--text);
+            width: 100%;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+
+        input:hover {
+            border-color: var(--amber);
+            background-color: rgba(232, 171, 104, 0.06);
+        }
+
+        input:focus-visible {
+            border-color: var(--amber);
+            background-color: rgba(232, 171, 104, 0.1);
+            box-shadow: 0 0 0 3px rgba(232, 171, 104, 0.2);
+        }
+
+        .link-demo {
+            position: relative;
+        }
+
+        a.site-link {
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+            color: var(--ink);
+            border-radius: 10px;
+            padding: 11px 16px;
+            display: inline-block;
+            transition: background-color 0.15s ease, transform 0.1s ease;
+        }
+
+        a.site-link:link {
+            background-color: var(--amber);
+        }
+
+        a.site-link:visited {
+            background-color: var(--muted);
+            color: var(--ink);
+        }
+
+        a.site-link:hover {
+            background-color: #f2c98d;
+        }
+
+        a.site-link:active {
+            transform: scale(0.97);
+        }
+
+        a.site-link:focus-visible {
+            outline: 2px solid var(--text);
+            outline-offset: 3px;
+        }
+
+        ul.demo-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-family: 'Cascadia Mono', monospace;
+            font-size: 14px;
+        }
+
+        ul.demo-list li {
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: var(--ink);
+            border: 1px solid var(--line);
+            color: var(--text);
+        }
+
+        ul.demo-list li:first-child {
+            color: var(--amber);
+            border-color: rgba(232, 171, 104, 0.3);
+        }
+
+        ul.demo-list li:nth-child(3) {
+            color: var(--mint);
+            border-color: rgba(116, 227, 200, 0.3);
+        }
+
+        ul.demo-list li:last-child {
+            color: var(--violet);
+            border-color: rgba(179, 162, 238, 0.3);
+        }
+
+        .text-block {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--ink);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 14px 16px;
+        }
+
+        .first-letter-demo::first-letter {
+            color: var(--amber);
+            font-size: 2.1em;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .first-line-demo::first-line {
+            color: var(--mint);
+            font-weight: 600;
+        }
+
+        .note-demo::before {
+            content: "NOTE:";
+            color: var(--violet);
+            font-weight: 700;
+            margin-right: 8px;
+            font-family: 'Cascadia Mono', monospace;
+            font-size: 0.85em;
+        }
+
+        .quote-demo::after {
+            content: " \201D";
+            color: var(--violet);
+            font-size: 1.4em;
+            font-weight: 700;
+        }
+
+        #hover-preview {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300px;
+            border-radius: 12px;
+            border: 1px solid var(--line);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+            opacity: 0;
+            transform: scale(0.96);
+            z-index: 999;
+            transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+        }
+
+        #hover-preview.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w-full h-dvh flex items-center justify-center text-white text-shadow-lg">
+        <div
+            class="bg-black/60 backdrop-blur-sm w-[90%] h-[90%] border-[5px] border-white/20 rounded-[70px] flex flex-col p-5">
+
+            <div id="navbar"></div>
+
+            <div class="flex flex-col items-center justify-start flex-1 overflow-y-auto">
+                <div class="text-shadow-lg text-white w-full">
+
+                    <!-- Content -->
+
+                    <main class="wrap adm-content">
+                        <section class="section cat-classes">
+                            <div class="section-head">
+                                <h2>Interactive pseudo-classes</h2>
+                                <span class="count">respond to user state</span>
+                            </div>
+                            <div class="grid">
+                                <div class="card">
+                                    <div class="badges">
+                                        <span class="badge">:link</span>
+                                        <span class="badge">:visited</span>
+                                        <span class="badge">:hover</span>
+                                        <span class="badge">:active</span>
+                                    </div>
+                                    <p>An anchor's color shifts across its four interactive states — try clicking it,
+                                        then hover again.</p>
+                                    <div class="demo link-demo">
+                                        <a id="site-link" class="site-link" target="_blank"
+                                            href="https://www.arvi.click">arvi.click →</a>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="badges">
+                                        <span class="badge">:hover</span>
+                                        <span class="badge">:focus</span>
+                                    </div>
+                                    <p>The input field's border and background shift on hover, and again once it holds
+                                        focus.</p>
+                                    <div class="demo">
+                                        <input type="text" value="Type here">
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="section cat-structural">
+                            <div class="section-head">
+                                <h2>Structural pseudo-classes</h2>
+                                <span class="count">target by position</span>
+                            </div>
+                            <div class="grid">
+                                <div class="card">
+                                    <div class="badges">
+                                        <span class="badge">:first-child</span>
+                                        <span class="badge">:nth-child(3)</span>
+                                        <span class="badge">:last-child</span>
+                                    </div>
+                                    <p>Each list item is styled purely by where it sits — no classes needed on the items
+                                        themselves.</p>
+                                    <div class="demo">
+                                        <ul class="demo-list">
+                                            <li>First child</li>
+                                            <li>Child</li>
+                                            <li>Third child</li>
+                                            <li>Child</li>
+                                            <li>Last child</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="section cat-elements">
+                            <div class="section-head">
+                                <h2>Pseudo-elements</h2>
+                                <span class="count">style a fragment or inject content</span>
+                            </div>
+                            <div class="grid">
+                                <div class="card">
+                                    <div class="badges"><span class="badge">::first-letter</span></div>
+                                    <p>Only the opening character of the text is styled.</p>
+                                    <div class="demo text-block first-letter-demo">Lorem ipsum dolor sit amet,
+                                        consectetur adipiscing elit.</div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="badges"><span class="badge">::first-line</span></div>
+                                    <p>Only the first rendered line is styled — resize the window and watch it
+                                        recalculate.</p>
+                                    <div class="demo text-block first-line-demo">Lorem ipsum dolor sit amet, consectetur
+                                        adipiscing elit. Resize the page to see the first line change.</div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="badges"><span class="badge">::before</span></div>
+                                    <p>Content is injected before the element's text via CSS, not HTML.</p>
+                                    <div class="demo text-block note-demo">This is an important note.</div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="badges"><span class="badge">::after</span></div>
+                                    <p>Content is injected after the element's text via CSS, not HTML.</p>
+                                    <div class="demo text-block quote-demo">Every idea begins with a single thought.
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </main>
+
+                    <img id="hover-preview" src="../assets/arvi.png" alt="Preview of arvi.click">
+
+                </div>
+
+                <a href="./index.html"
+                    class="hover:bg-white w-fit my-5 hover:text-black bg-black text-white hover:scale-110 transition-all py-2 px-4 rounded-full flex items-center gap-2">
+                    <i class="fa-solid fa-caret-left"></i> Go Back
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <div
+        class="loading fixed top-0 left-0 right-0 bottom-0 bg-black z-99999 flex flex-col gap-5 items-center justify-center ">
+        <img src="../assets/android-chrome-192x192.png" alt="image" class="animate-picture">
+    </div>
+
+    <script>
+        const link = document.getElementById('site-link');
+        const preview = document.getElementById('hover-preview');
+
+        const offsetX = -70;
+        const offsetY = -30;
+
+        link.addEventListener('mouseenter', () => {
+            preview.classList.add('visible');
+        });
+
+        link.addEventListener('mousemove', (e) => {
+            let x = e.clientX + offsetX;
+            let y = e.clientY + offsetY;
+
+            const maxX = window.innerWidth - preview.offsetWidth - 10;
+            const maxY = window.innerHeight - preview.offsetHeight - 10;
+            if (x > maxX) x = e.clientX - preview.offsetWidth - offsetX;
+            if (y > maxY) y = e.clientY - preview.offsetHeight - offsetY;
+
+            preview.style.left = x + 'px';
+            preview.style.top = y + 'px';
+        });
+
+        link.addEventListener('mouseleave', () => {
+            preview.classList.remove('visible');
+        });
+
+        initLoadingScreen()
+        loadComponent("navbar", "../components/navbar.html", {
+            title: "ADM",
+            imagePath: "../assets/Tungpalan, Arvi Jay B.jpg"
+        })
+    </script>
+</body>
+
+</html>
+</html>

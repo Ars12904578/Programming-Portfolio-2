@@ -10,6 +10,178 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="../components/load.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <style>
+        :root {
+            --ink: #0b0b0c;
+            --panel: rgba(20, 20, 22, 0.55);
+            --panel-hover: rgba(255, 255, 255, 0.05);
+            --line: rgba(255, 255, 255, 0.14);
+            --line-hover: rgba(255, 255, 255, 0.28);
+            --text: #f2f1ee;
+            --muted: rgba(242, 241, 238, 0.66);
+            --amber: #e8ab68;
+            --mint: #74e3c8;
+            --violet: #b3a2ee;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .wrap {
+            width: 100%;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 32px 24px 48px;
+        }
+
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section-head {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .section-head h2 {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .section-head .count {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .cat-unordered .section-head h2 {
+            color: var(--amber);
+        }
+
+        .cat-ordered .section-head h2 {
+            color: var(--mint);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            position: relative;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 22px 24px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            color: var(--text);
+            transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: var(--line-hover);
+            background: var(--panel-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+        }
+
+        .badge {
+            align-self: flex-start;
+            font-size: 12.5px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid currentColor;
+            white-space: nowrap;
+        }
+
+        .cat-unordered .badge {
+            color: var(--amber);
+            background: rgba(232, 171, 104, 0.1);
+        }
+
+        .cat-ordered .badge {
+            color: var(--mint);
+            background: rgba(116, 227, 200, 0.1);
+        }
+
+        .card ul,
+        .card ol {
+            margin: 0;
+            padding-left: 22px;
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        .card ul.a {
+            list-style-type: circle;
+        }
+
+        .card ul.b {
+            list-style-type: disc;
+        }
+
+        .card ul.c {
+            list-style-type: square;
+        }
+
+        .card ol.d,
+        .card ol.e {
+            list-style: none;
+            padding-left: 0;
+            counter-reset: item;
+        }
+
+        .card ol.d li,
+        .card ol.e li {
+            counter-increment: item;
+            display: flex;
+            gap: 10px;
+        }
+
+        .card ol.d li::before,
+        .card ol.e li::before {
+            flex: 0 0 auto;
+            min-width: 32px;
+            text-align: right;
+            /* color: var(--mint); */
+        }
+
+        .card ol.d li::before {
+            content: counter(item, upper-roman) ".";
+        }
+
+        .card ol.e li::before {
+            content: counter(item, lower-roman) ".";
+        }
+
+        .card ol.f {
+            list-style-type: lower-alpha;
+        }
+
+        .card ol.g {
+            list-style-type: decimal;
+        }
+
+        .intro {
+            color: var(--muted);
+            font-size: 16px;
+            max-width: 560px;
+            line-height: 1.6;
+            margin: 0 0 24px;
+        }
+    </style>
 </head>
 
 <body>
@@ -23,8 +195,88 @@
                 <div class="text-shadow-lg text-white w-full">
 
                     <!-- Content -->
+                    <main class="wrap">
 
+                        <section class="section cat-unordered">
+                            <div class="section-head">
+                                <h2>Unordered lists</h2>
+                                <span class="count">list-style-type</span>
+                            </div>
+                            <div class="grid">
+                                <div class="card">
+                                    <span class="badge">circle</span>
+                                    <ul class="a">
+                                        <li>Coffee</li>
+                                        <li>Tea</li>
+                                        <li>Coca Cola</li>
+                                    </ul>
+                                </div>
 
+                                <div class="card">
+                                    <span class="badge">disc</span>
+                                    <ul class="b">
+                                        <li>Coffee</li>
+                                        <li>Tea</li>
+                                        <li>Coca Cola</li>
+                                    </ul>
+                                </div>
+
+                                <div class="card">
+                                    <span class="badge">square</span>
+                                    <ul class="c">
+                                        <li>Coffee</li>
+                                        <li>Tea</li>
+                                        <li>Coca Cola</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="section cat-ordered">
+                            <div class="section-head">
+                                <h2>Ordered lists</h2>
+                                <span class="count">list-style-type</span>
+                            </div>
+                            <div class="grid">
+                                <div class="card">
+                                    <span class="badge">upper-roman</span>
+                                    <ol class="d">
+                                        <li>Coffee</li>
+                                        <li>Tea</li>
+                                        <li>Coca Cola</li>
+                                    </ol>
+                                </div>
+
+                                <div class="card">
+                                    <span class="badge">lower-roman</span>
+                                    <ol class="e">
+                                        <li>Coffee</li>
+                                        <li>Tea</li>
+                                        <li>Coca Cola</li>
+                                    </ol>
+                                </div>
+
+                                <div class="card">
+                                    <span class="badge">lower-alpha</span>
+                                    <ol class="f">
+                                        <li>Coffee</li>
+                                        <li>Tea</li>
+                                        <li>Coca Cola</li>
+                                    </ol>
+                                </div>
+
+                                <div class="card">
+                                    <span class="badge">decimal</span>
+                                    <ol class="g">
+                                        <li>Coffee</li>
+                                        <li>Tea</li>
+                                        <li>Coca Cola</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </section>
+
+                    </main>
                 </div>
 
                 <a href="./index.html"
@@ -50,5 +302,4 @@
     </script>
 </body>
 
-</html>
 </html>
